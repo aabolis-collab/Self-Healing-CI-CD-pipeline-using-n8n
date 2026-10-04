@@ -1,8 +1,7 @@
-// Sample Test Code
+const assert = require('assert');
 
-describe('Sample Test', () => {
-  it('should return true', () => {
-    const result = true;
-    expect(result).toBe(true);
-  });
+describe('Sample Test', function() {
+    it('should return true', function() {
+        assert.strictEqual(true, true);
+    });
 });
