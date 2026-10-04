@@ -1,15 +1,15 @@
-// Assuming there's a bug in the test file that causes tests to fail
-
+// Importing required modules
 const assert = require('assert');
 const myFunction = require('./myFunction');
 
-describe('My Function Tests', () => {
+// Test Suite
+describe('My Function', () => {
     it('should return true for valid input', () => {
-        const result = myFunction('validInput');
+        const result = myFunction('valid input');
         assert.strictEqual(result, true);
     });
 
-    it('should throw an error for invalid input', () => {
-        assert.throws(() => myFunction('invalidInput'), Error);
+    it('should throw error for invalid input', () => {
+        assert.throws(() => myFunction('invalid input'), Error);
     });
 });
