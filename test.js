@@ -1,11 +1,28 @@
-// Sample test file content
 
-const { expect } = require('chai');
-const { myAsyncFunction } = require('./myModule');
+const express = require('express');
+const http = require('http');
 
-describe('My Async Function Tests', () => {
-  it('should return expected value', async () => {
-    const result = await myAsyncFunction();
-    expect(result).to.equal('expected value');
-  });
+const app = express();
+
+app.get('/', (req, res) => res.send('Hello from Express App'));
+
+const server = app.listen(5000, () => {
+    console.log('Server started, running smoke test...');
+
+    http.get('http://localhost:5000/', (res) => {
+        console.log(`Status: ${res.statusCode}`);
+
+        if (res.statusCode === 200) {
+            console.log('Smoke test passed');
+            server.close();
+            process.exit(0);
+        } else {
+            server.close();
+            process.exit(1);
+        }
+    }).on('error', (err) => {
+        console.error('Request failed:', err.message);
+        server.close();
+        process.exit(1);
+    });
 });
